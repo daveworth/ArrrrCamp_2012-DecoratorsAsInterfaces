@@ -1,0 +1,60 @@
+<head>
+  <title>Decorators as Interfaces</title>
+  <meta content="How to refactor multiple object displays with decorators" name="description" />
+  <meta content="David Worth - Highgroove Studios" name="author" />
+  <meta content="width=1024, user-scalable=no" name="viewport" />
+  <script src="js/jquery-1.7.2.min.js"></script>
+  <script src="js/modernizr.custom.js"></script>
+  <link href="core/deck.core.css" rel="stylesheet" />
+  <script src="core/deck.core.js"></script>
+  <link href="extensions/hash/deck.hash.css" rel="stylesheet" />
+  <script src="extensions/hash/deck.hash.js"></script>
+  <link href="extensions/navigation/deck.navigation.css" rel="stylesheet" />
+  <script src="extensions/navigation/deck.navigation.js"></script>
+  <link href="extensions/scale/deck.scale.css" rel="stylesheet" />
+  <script src="extensions/scale/deck.scale.js"></script>
+  <link href="themes/style/mnml.css" rel="stylesheet" />
+  <link href="DecoratorsAsInterfaces.css" rel="stylesheet" />
+  <script type="text/javascript">$(function() { $.deck('.slide'); });</script>
+</head>
+<body>
+  <article class="deck-container">
+    <section class="slide">
+      <center>
+        <h2> Decorators as Interfaces</h2>
+      </center>
+      <h4>David Worth - dave@highgroove.com<br />@highgroovedave<img height="50" src="images/twitter.png" style="display: inline; margin-bottom: 0;" width="50" />
+      </h4>
+      <img alt="Highgroove Studios" class="hglogo" src="images/highgroove.png" />
+    </section>
+    <section class="slide">
+      <h3>So you want a little view logic</h3>
+      <script src="https://gist.github.com/3833619.js?file=widget.rb#L4-6"></script>
+      <h3 class="slide">At first putting it in the model is fine...</h3>
+    </section>
+    <section class="slide">
+      <h3>and we might have a view to show it</h3>
+      <script src="https://gist.github.com/3833619.js?file=widget_show.html.haml"></script>
+    </section>
+    <section class="slide">
+      <h3>But we might need another class that Quacks like a Widget and has to be displayed identically</h3>
+      <div class="slide">
+        <h3>First lets refactor this correctly</h3>
+        <script src="https://gist.github.com/3833619.js?file=widget_refactor.rb"></script>
+      </div>
+    </section>
+    <section class="slide">
+      <h3>Now it's easy to add another louder class</h3>
+      <script src="https://gist.github.com/3833619.js?file=metal_widget.rb"></script>
+      <h3 class="slide">... and display it in the same view (i.e. it quacks alike)</h3>
+    </section>
+    <section class="slide">
+      <h3>And, to make life easier from now on...</h3>
+      <script src="https://gist.github.com/3833619.js?file=inherited_decorators.rb"></script>
+      <h3 class="slide">Which prevents any other class from blowing up if it in inherits from WidgetDecorator and is rendered in the same view</h3>
+    </section>
+    <section class="slide">
+      <h2>Thanks!</h2>
+    </section>
+  </article>
+</body>

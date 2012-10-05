@@ -1,7 +1,7 @@
 head
-  title=""
-  meta name="description" content=""
-  meta name="author"      content=""
+  title="Decorators as Interfaces"
+  meta name="description" content="How to refactor multiple object displays with decorators"
+  meta name="author"      content="David Worth - Highgroove Studios"
   meta name="viewport"    content="width=1024, user-scalable=no"
 
   script src="js/jquery-1.7.2.min.js"
@@ -13,23 +13,24 @@ head
   /link rel="stylesheet" href="extensions/goto/deck.goto.css"
   /script src="extensions/goto/deck.goto.js"
 
-  /link rel="stylesheet" href="extensions/hash/deck.hash.css"
-  /script src="extensions/hash/deck.hash.js"
+  link rel="stylesheet" href="extensions/hash/deck.hash.css"
+  script src="extensions/hash/deck.hash.js"
 
   /link rel="stylesheet" href="extensions/menu/deck.menu.css"
   /script src="extensions/menu/deck.menu.js"
 
-  /link rel="stylesheet" href="extensions/navigation/deck.navigation.css"
-  /script src="extensions/navigation/deck.navigation.js"
+  link rel="stylesheet" href="extensions/navigation/deck.navigation.css"
+  script src="extensions/navigation/deck.navigation.js"
 
-  /link rel="stylesheet" href="extensions/scale/deck.scale.css"
-  /script src="extensions/scale/deck.scale.js"
+  link rel="stylesheet" href="extensions/scale/deck.scale.css"
+  script src="extensions/scale/deck.scale.js"
 
   /link rel="stylesheet" href="extensions/status/deck.status.css"
   /script src="extensions/status/deck.status.js"
 
   /link rel="stylesheet" href="themes/style/web-2.0.css"
   /link rel="stylesheet" href="themes/style/swiss.css"
+  link rel="stylesheet" href="themes/style/mnml.css"
   /link rel="stylesheet" href="themes/style/neon.css"
 
   /link rel="stylesheet" href="themes/transition/horizontal-slide.css"
@@ -40,22 +41,43 @@ head
     $(function() { $.deck('.slide'); });
 
 body
-  // use .deck-menu if you've enabled the menu extension above
-  /article.deck-container.deck-menu
   article.deck-container
     section.slide
-      // Permalinks are available if you've enabled the hash exntension
-      /a.deck-permalink href="." title="Permalink to this slide" #
+      center
+        h2  Decorators as Interfaces
+      h4
+        | David Worth - dave@highgroove.com
+        br
+        | @highgroovedave
+        img src="images/twitter.png" width="50" height="50" style="display: inline; margin-bottom: 0;"
+      img.hglogo src="images/highgroove.png" alt="Highgroove Studios"
 
-    // If you've enabled the navigation extension
-    /p.deck-navigation
-    /  a href="#"
-    /    span.deck-prev-link title="Previous" &#8592;
-    /  a href="#"
-    /    span.deck-next-link title="Next" &#8594;
+    section.slide
+      h3 So you want a little view logic
+      script src="https://gist.github.com/3833619.js?file=widget.rb#L4-6"
+      h3.slide At first putting it in the model is fine...
 
-    // If you've enabled the status extension
-    /p.deck-status
-    /  span.deck-status-current
-    /  |  /
-    /  span.deck-status-total
+    section.slide
+      h3 and we might have a view to show it
+      script src="https://gist.github.com/3833619.js?file=widget_show.html.haml"
+
+    section.slide
+      h3 But we might need another class that Quacks like a Widget and has to be displayed identically
+      .slide
+        h3 First lets refactor this correctly
+        script src="https://gist.github.com/3833619.js?file=widget_refactor.rb"
+
+
+    section.slide
+      h3 Now it's easy to add another louder class
+      script src="https://gist.github.com/3833619.js?file=metal_widget.rb"
+      h3.slide ... and display it in the same view (i.e. it quacks alike)
+
+    section.slide
+      h3 And, to make life easier from now on...
+      script src="https://gist.github.com/3833619.js?file=inherited_decorators.rb"
+      h3.slide Which prevents any other class from blowing up if it in inherits from WidgetDecorator and is rendered in the same view
+
+    section.slide
+      h2
+        | Thanks!
